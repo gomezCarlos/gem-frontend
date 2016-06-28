@@ -9,14 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var toolbar_1 = require('@angular2-material/toolbar');
-var list_1 = require('@angular2-material/list');
-var sidenav_1 = require('@angular2-material/sidenav');
-var icon_1 = require('@angular2-material/icon');
-var button_1 = require('@angular2-material/button');
-var card_1 = require('@angular2-material/card');
-var input_1 = require('@angular2-material/input');
-var router_1 = require('@angular/router');
+//import { ROUTER_DIRECTIVES } from '@angular/router';
 var AppComponent = (function () {
     function AppComponent() {
         this.title = "Application name";
@@ -25,17 +18,11 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
-            directives: [
-                toolbar_1.MD_TOOLBAR_DIRECTIVES,
-                sidenav_1.MD_SIDENAV_DIRECTIVES,
-                icon_1.MdIcon,
-                button_1.MD_BUTTON_DIRECTIVES,
-                card_1.MD_CARD_DIRECTIVES,
-                input_1.MD_INPUT_DIRECTIVES,
-                list_1.MD_LIST_DIRECTIVES,
-                router_1.ROUTER_DIRECTIVES
-            ],
-            providers: [icon_1.MdIconRegistry]
+            //directives: [
+            //
+            //	ROUTER_DIRECTIVES
+            //	],
+            providers: []
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
