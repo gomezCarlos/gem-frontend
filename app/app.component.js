@@ -9,7 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//import { ROUTER_DIRECTIVES } from '@angular/router';
+var gem_list_component_1 = require('./gems/gem-list.component');
+var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var AppComponent = (function () {
     function AppComponent() {
         this.title = "Application name";
@@ -18,11 +20,11 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
-            //directives: [
-            //
-            //	ROUTER_DIRECTIVES
-            //	],
-            providers: []
+            directives: [
+                gem_list_component_1.GemListComponent,
+                router_1.ROUTER_DIRECTIVES
+            ],
+            providers: [http_1.HTTP_PROVIDERS]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
