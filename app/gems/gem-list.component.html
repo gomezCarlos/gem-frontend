@@ -1,6 +1,14 @@
 <p>
 List of gems</p>
-
-<div *ngFor="let gem of gems">
-	<h4>Gem name: {{gem.name}}</h4>
-</div>
+<ul class="mdl-list">
+  <li class="mdl-list__item mdl-list__item--three-line"  *ngFor="let gem of gems">
+  	<span class="mdl-list__item-primary-content">
+  		<i class="material-icons mdl-list__item-avatar">star</i>
+  		<span>{{gem.name}}</span>
+  		<span class="mdl-list__item-text-body">{{gem.description}}</span>
+  	</span>
+  	<span mdl-list__item-secondary-content>
+  		<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">edit</i></a>
+  	</span>
+  </li>
+</ul>
