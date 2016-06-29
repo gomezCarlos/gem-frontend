@@ -24,7 +24,7 @@ var AppComponent = (function () {
                 gem_list_component_1.GemListComponent,
                 router_1.ROUTER_DIRECTIVES
             ],
-            providers: [http_1.HTTP_PROVIDERS]
+            providers: [http_1.HTTP_PROVIDERS,]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

@@ -18,7 +18,7 @@ var GemService = (function () {
         this.http = http;
         this.urlBackend = "http://127.0.0.3:7890/api/v1/gems";
     }
-    GemService.prototype.getData = function (r) { return r.json(); };
+    GemService.prototype.getData = function (r) { var body = r.json(); return body._embedded.gems; };
     GemService.prototype.getError = function (error) { return Observable_1.Observable.throw(error); };
     GemService.prototype.getOptions = function () {
         var headers = new http_1.Headers({

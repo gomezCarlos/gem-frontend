@@ -14,7 +14,7 @@ export class GemService {
 
 	}
 
-	private getData(r: Response) { return r.json(); }
+	private getData(r: Response) { let body = r.json(); return body._embedded.gems; }
 
 	private getError(error: any) { return Observable.throw(error); }
 
