@@ -16,6 +16,8 @@ export class GemService {
 
 	private getData(r: Response) { let body = r.json(); return body._embedded.gems; }
 
+	private getSingleData(r: Response) { let body = r.json(); return body; }
+
 	private getError(error: any) { return Observable.throw(error); }
 
 	private getOptions(){
@@ -31,5 +33,17 @@ export class GemService {
 			.map(this.getData)
 			.catch(this.getError)
 			;
+	}
+
+	getById(id : number): Observable<Gem>{
+		return this.http.get(this.urlBackend+"/"+id)
+		.map(this.getData)
+		.catch(this.getError);
+	}
+
+	getByUrl(url : string): Observable<Gem>{
+		return this.http.get(url)
+		.map(this.getSingleData)
+		.catch(this.getError);
 	}
 }

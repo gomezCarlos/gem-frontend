@@ -33,7 +33,7 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.login = function (user) {
         var authenticatedUser = users.find(function (u) { return u.email === user.email; });
         if (authenticatedUser) {
-            localStorage.setItem("user", authenticatedUser);
+            localStorage.setItem("user", authenticatedUser.email);
             this._router.navigate(['Home']);
             return true;
         }

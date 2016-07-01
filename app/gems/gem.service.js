@@ -19,6 +19,7 @@ var GemService = (function () {
         this.urlBackend = "http://127.0.0.3:7890/api/v1/gems";
     }
     GemService.prototype.getData = function (r) { var body = r.json(); return body._embedded.gems; };
+    GemService.prototype.getSingleData = function (r) { var body = r.json(); return body; };
     GemService.prototype.getError = function (error) { return Observable_1.Observable.throw(error); };
     GemService.prototype.getOptions = function () {
         var headers = new http_1.Headers({
@@ -30,6 +31,16 @@ var GemService = (function () {
     GemService.prototype.getGems = function () {
         return this.http.get(this.urlBackend)
             .map(this.getData)
+            .catch(this.getError);
+    };
+    GemService.prototype.getById = function (id) {
+        return this.http.get(this.urlBackend + "/" + id)
+            .map(this.getData)
+            .catch(this.getError);
+    };
+    GemService.prototype.getByUrl = function (url) {
+        return this.http.get(url)
+            .map(this.getSingleData)
             .catch(this.getError);
     };
     GemService = __decorate([

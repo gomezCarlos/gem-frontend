@@ -16,15 +16,20 @@ var GemListComponent = (function () {
         this.gemService = gemService;
         // code...
     }
-    GemListComponent.prototype.getUsers = function () {
+    GemListComponent.prototype.getGems = function () {
         var _this = this;
         this.gemService
             .getGems()
             .subscribe(function (gems) { _this.gems = gems; }, function (error) { _this.error = error; });
     };
+    GemListComponent.prototype.getGem = function (id) {
+        var _this = this;
+        this.gemService
+            .getById(id)
+            .subscribe(function (gem) { _this.gem = gem; }, function (error) { _this.error = error; });
+    };
     GemListComponent.prototype.ngOnInit = function () {
-        this.getUsers();
-        alert("Mis gemas: " + this.gems);
+        this.getGems();
     };
     GemListComponent = __decorate([
         core_1.Component({

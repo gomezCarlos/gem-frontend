@@ -14,13 +14,14 @@ import { HTTP_PROVIDERS } from '@angular/http';
 export class GemListComponent implements OnInit {
 
 	gems: Gem[];
+	gem: Gem;
 	error: any;
 
 	constructor(private gemService : GemService ) {
 		// code...
 	}
 
-	getUsers(){
+	getGems(){
 		this.gemService
 		.getGems()
 		.subscribe(
@@ -29,8 +30,17 @@ export class GemListComponent implements OnInit {
 			);
 	}
 
-	ngOnInit(){
-		this.getUsers();
-		alert("Mis gemas: "+this.gems)
+	getGem(id: number){
+		this.gemService
+		.getById(id)
+		.subscribe(
+			gem =>{this.gem = gem;},
+			error => {this.error = error;}
+			)
 	}
+
+	ngOnInit(){
+		this.getGems();
+	}
+
 }

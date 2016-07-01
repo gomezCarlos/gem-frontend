@@ -1,6 +1,6 @@
-<p>
-List of gems</p>
-<ul class="mdl-list">
+<div class="mdl-spinner mdl-js-spinner is-active"></div>
+
+<ul class="mdl-list" >
   <li class="mdl-list__item mdl-list__item--three-line"  *ngFor="let gem of gems">
   	<span class="mdl-list__item-primary-content">
   		<i class="material-icons mdl-list__item-avatar">star</i>
@@ -8,7 +8,7 @@ List of gems</p>
   		<span class="mdl-list__item-text-body">{{gem.description}}</span>
   	</span>
   	<span mdl-list__item-secondary-content>
-  		<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">edit</i></a>
+  		<a class="mdl-list__item-secondary-action" href="#" ><i class="material-icons">edit</i></a>
   	</span>
   </li>
 </ul>

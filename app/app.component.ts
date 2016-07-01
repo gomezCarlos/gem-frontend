@@ -11,7 +11,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
   	GemListComponent,
 	ROUTER_DIRECTIVES
 	],
-  providers: [HTTP_PROVIDERS,]
+  providers: [HTTP_PROVIDERS,ROUTER_DIRECTIVES]
 })
 export class AppComponent {
   
