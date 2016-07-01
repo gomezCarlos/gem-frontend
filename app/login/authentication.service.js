@@ -34,7 +34,7 @@ var AuthenticationService = (function () {
         var authenticatedUser = users.find(function (u) { return u.email === user.email; });
         if (authenticatedUser) {
             localStorage.setItem("user", authenticatedUser.email);
-            this._router.navigate(['Home']);
+            this._router.navigate(['gems']);
             return true;
         }
         return false;

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var gem_1 = require('./gem');
 var gem_service_1 = require('./gem.service');
 var router_1 = require('@angular/router');
 var GemDetailComponent = (function () {
@@ -17,8 +18,19 @@ var GemDetailComponent = (function () {
         this.router = router;
         this.route = route;
     }
-    GemDetailComponent.prototype.ngOnInit = function () { };
-    GemDetailComponent.prototype.ngOnDestroy = function () { };
+    GemDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.param = this.route.params.subscribe(function (parameter) {
+            var id = parameter['id'];
+            if (id)
+                _this.gemService.getById(id).subscribe(function (gem) { return _this.gem = gem; }, function (error) { return _this.error = error; });
+            else
+                _this.gem = new gem_1.Gem();
+        });
+    };
+    GemDetailComponent.prototype.ngOnDestroy = function () {
+        this.param.unsubscribe();
+    };
     GemDetailComponent.prototype.save = function () { };
     GemDetailComponent.prototype.list = function () { };
     GemDetailComponent = __decorate([
@@ -26,7 +38,7 @@ var GemDetailComponent = (function () {
             selector: "gem-detail",
             templateUrl: "app/gems/gem-detail.component.html",
             directives: [],
-            providers: []
+            providers: [gem_service_1.GemService]
         }), 
         __metadata('design:paramtypes', [gem_service_1.GemService, router_1.Router, router_1.ActivatedRoute])
     ], GemDetailComponent);

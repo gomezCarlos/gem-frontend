@@ -27,7 +27,7 @@ export class AuthenticationService {
     var authenticatedUser = users.find(u => u.email === user.email);
     if (authenticatedUser){
       localStorage.setItem("user", authenticatedUser.email);
-      this._router.navigate(['Home']);      
+      this._router.navigate(['gems']);      
       return true;
     }
     return false;

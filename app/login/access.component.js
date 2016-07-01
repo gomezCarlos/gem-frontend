@@ -10,24 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var authentication_service_1 = require('./authentication.service');
+var router_1 = require('@angular/router');
 var LoginComponent = (function () {
-    function LoginComponent(_service) {
+    function LoginComponent(_service, router) {
         this._service = _service;
+        this.router = router;
         this.user = new authentication_service_1.User('', '');
         this.errorMsg = '';
     }
     LoginComponent.prototype.login = function () {
         if (!this._service.login(this.user)) {
             this.errorMsg = 'Fallo en la autenticación';
+            alert(this.errorMsg);
         }
+        else
+            this.router.navigate(['gems']);
     };
     LoginComponent = __decorate([
         core_1.Component({
             selector: 'login-form',
             providers: [authentication_service_1.AuthenticationService],
-            template: "app/login/access.component.html"
+            templateUrl: 'app/login/access.component.html'
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 }());

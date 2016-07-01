@@ -1,6 +1,19 @@
-<div class="mdl-spinner mdl-js-spinner is-active"></div>
+<div class="mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Gemas</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris sagittis pellentesque lacus eleifend lacinia...
+  </div>
+</div>
 
-<ul class="mdl-list" >
+
+<div mdl *ngIf="!gems" class="mdl-spinner mdl-js-spinner is-active"></div>
+
+
+
+<ul class="mdl-list" *ngIf="gems">
   <li class="mdl-list__item mdl-list__item--three-line"  *ngFor="let gem of gems">
   	<span class="mdl-list__item-primary-content">
   		<i class="material-icons mdl-list__item-avatar">star</i>
@@ -8,7 +21,10 @@
   		<span class="mdl-list__item-text-body">{{gem.description}}</span>
   	</span>
   	<span mdl-list__item-secondary-content>
-  		<a class="mdl-list__item-secondary-action" href="#" ><i class="material-icons">edit</i></a>
+  		<button class="mdl-list__item-secondary-action" (click)="view(gem.ids)"><i class="material-icons">edit</i></button>
   	</span>
   </li>
 </ul>
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="newGem()">
+  <i class="material-icons">add</i>
+</button>

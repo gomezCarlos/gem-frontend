@@ -1,7 +1,7 @@
 
 export class Gem {
 
-	id: number;
+	ids: number;
 	name: string;
 	description: string;
 	

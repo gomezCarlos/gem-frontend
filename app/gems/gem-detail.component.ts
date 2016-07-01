@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 	selector: "gem-detail",
 	templateUrl: "app/gems/gem-detail.component.html",
 	directives: [],
-	providers: []
+	providers: [GemService]
 })
 export class GemDetailComponent implements OnInit, OnDestroy {
 
@@ -21,9 +21,21 @@ export class GemDetailComponent implements OnInit, OnDestroy {
   	){
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.param = this.route.params.subscribe(parameter=>{
+      let id = parameter['id'];
+      if(id)
+        this.gemService.getById(id).subscribe(gem =>this.gem =gem,
+          error => this.error = error)
+      else
+        this.gem = new Gem();
+    }
+    )
+  }
 
-  ngOnDestroy(){}
+  ngOnDestroy(){
+    this.param.unsubscribe();
+  }
 
   save(){}
 

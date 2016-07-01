@@ -9,25 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var gem_list_component_1 = require('./gems/gem-list.component');
-var router_1 = require('@angular/router');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = "Gem";
+var MdlComponent = (function () {
+    function MdlComponent(el) {
+        this.el = el;
+        MdlComponent.mdlWrapper(el);
     }
-    AppComponent = __decorate([
+    MdlComponent.mdlWrapper = function (element) {
+        componentHandler.upgradeElement(element.nativeElement);
+    };
+    MdlComponent = __decorate([
         core_1.Component({
-            selector: 'gem-app',
-            templateUrl: 'app/app.component.html',
-            directives: [
-                gem_list_component_1.GemListComponent,
-                router_1.ROUTER_DIRECTIVES
-            ],
-            providers: []
+            selector: '[mdl]',
+            template: "<ng-content></ng-content>"
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], MdlComponent);
+    return MdlComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.MdlComponent = MdlComponent;
+//# sourceMappingURL=mdl.component.js.map

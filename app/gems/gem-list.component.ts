@@ -3,11 +3,12 @@ import { Gem } from './gem';
 import { GemService } from './gem.service';
 import { Router } from '@angular/router';
 import { HTTP_PROVIDERS } from '@angular/http';
+import { MdlComponent } from '../mdl.component';
 
 @Component({
 	selector: "gem-list",
 	templateUrl: "app/gems/gem-list.component.html",
-	directives: [],
+	directives: [MdlComponent],
 	providers: [GemService,HTTP_PROVIDERS]
 })
 
@@ -16,9 +17,9 @@ export class GemListComponent implements OnInit {
 	gems: Gem[];
 	gem: Gem;
 	error: any;
-
-	constructor(private gemService : GemService ) {
-		// code...
+	constructor(private gemService : GemService,
+		private router : Router
+	 ) {
 	}
 
 	getGems(){
@@ -43,4 +44,11 @@ export class GemListComponent implements OnInit {
 		this.getGems();
 	}
 
+	view(gem_id: number){
+		this.router.navigate(["/gem",gem_id]);
+	}
+
+	newGem(){
+		this.router.navigate(["/gem"]);
+	}
 }

@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var gem_service_1 = require('./gem.service');
+var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
+var mdl_component_1 = require('../mdl.component');
 var GemListComponent = (function () {
-    function GemListComponent(gemService) {
+    function GemListComponent(gemService, router) {
         this.gemService = gemService;
-        // code...
+        this.router = router;
     }
     GemListComponent.prototype.getGems = function () {
         var _this = this;
@@ -31,14 +33,20 @@ var GemListComponent = (function () {
     GemListComponent.prototype.ngOnInit = function () {
         this.getGems();
     };
+    GemListComponent.prototype.view = function (gem_id) {
+        this.router.navigate(["/gem", gem_id]);
+    };
+    GemListComponent.prototype.newGem = function () {
+        this.router.navigate(["/gem"]);
+    };
     GemListComponent = __decorate([
         core_1.Component({
             selector: "gem-list",
             templateUrl: "app/gems/gem-list.component.html",
-            directives: [],
+            directives: [mdl_component_1.MdlComponent],
             providers: [gem_service_1.GemService, http_1.HTTP_PROVIDERS]
         }), 
-        __metadata('design:paramtypes', [gem_service_1.GemService])
+        __metadata('design:paramtypes', [gem_service_1.GemService, router_1.Router])
     ], GemListComponent);
     return GemListComponent;
 }());

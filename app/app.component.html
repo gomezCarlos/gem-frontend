@@ -8,8 +8,9 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="">First</a>
-        <a class="mdl-navigation__link" href="">Second</a>
+        <a class="mdl-navigation__link" [routerLink]="['home']">Home</a>
+        <a class="mdl-navigation__link" [routerLink]="['gems']">Gems</a>
+        
         <a class="mdl-navigation__link" href="">Third</a>
         <a class="mdl-navigation__link" href="">Fourth</a>
       </nav>
@@ -26,8 +27,6 @@
   </div>
   <main class="mdl-layout__content">
     <div class="page-content"><!-- Your content goes here -->
-      <h3>Gems Service</h3>
-        <gem-list>Loading gems</gem-list>
         <router-outlet></router-outlet>
     </div>
   </main>

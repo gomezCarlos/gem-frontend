@@ -1,10 +1,10 @@
 import {Component, ElementRef} from '@angular/core';
 import {AuthenticationService, User} from './authentication.service'
- 
+ import { Router } from '@angular/router';
 @Component({
     selector: 'login-form',
     providers: [AuthenticationService],
-    template: `app/login/access.component.html`
+    templateUrl: 'app/login/access.component.html'
 })
  
 export class LoginComponent {
@@ -13,11 +13,16 @@ export class LoginComponent {
     public errorMsg = '';
  
     constructor(
-        private _service:AuthenticationService) {}
+        private _service:AuthenticationService, 
+        private router : Router) {}
  
     login() {
         if(!this._service.login(this.user)){
             this.errorMsg = 'Fallo en la autenticación';
+            alert(this.errorMsg);
         }
+        else
+        
+        this.router.navigate(['gems']);
     }
 }
