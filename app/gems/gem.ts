@@ -1,9 +1,10 @@
 
 export class Gem {
 
-	ids: number;
+	gemId: number;
 	name: string;
 	description: string;
+	_links: string[];
 	
 	constructor() {
 		// my code...

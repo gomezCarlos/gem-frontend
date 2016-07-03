@@ -13,17 +13,27 @@ var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/throw');
 require('rxjs/add/operator/catch');
+var gem_1 = require('./gem');
 var GemService = (function () {
     function GemService(http) {
         this.http = http;
         this.urlBackend = "http://127.0.0.3:7890/api/v1/gems";
     }
     GemService.prototype.getData = function (r) { var body = r.json(); return body._embedded.gems; };
-    GemService.prototype.getSingleData = function (r) { var body = r.json(); return body; };
+    GemService.prototype.getSingleData = function (r) {
+        var body = r.json();
+        var gem = new gem_1.Gem();
+        gem.name = body.name;
+        gem.gemId = body.gemId;
+        gem.description = body.description;
+        //	return gem;
+        return body;
+    };
     GemService.prototype.getError = function (error) { return Observable_1.Observable.throw(error); };
     GemService.prototype.getOptions = function () {
         var headers = new http_1.Headers({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         });
         var options = new http_1.RequestOptions({ headers: headers });
         return options;
@@ -35,13 +45,33 @@ var GemService = (function () {
     };
     GemService.prototype.getById = function (id) {
         return this.http.get(this.urlBackend + "/" + id)
-            .map(this.getData)
+            .map(this.getSingleData)
             .catch(this.getError);
     };
     GemService.prototype.getByUrl = function (url) {
         return this.http.get(url)
             .map(this.getSingleData)
             .catch(this.getError);
+    };
+    GemService.prototype.save = function (gem) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        var requestOptions = new http_1.RequestOptions({ headers: headers });
+        var url = '';
+        if (gem.gemId != null) {
+            url = this.urlBackend + "/" + gem.gemId;
+            return this.http.put(url, JSON.stringify(gem), requestOptions)
+                .map(this.getSingleData)
+                .catch(this.getError);
+        }
+        else {
+            url = this.urlBackend;
+            return this.http.post(url, JSON.stringify(gem), requestOptions)
+                .map(this.getSingleData)
+                .catch(this.getError);
+        }
+    };
+    GemService.prototype.delete = function (gem) {
+        return this.http.delete(this.urlBackend + "/" + gem.gemId, this.getOptions).map(this.getSingleData).catch(this.getError);
     };
     GemService = __decorate([
         core_1.Injectable(), 

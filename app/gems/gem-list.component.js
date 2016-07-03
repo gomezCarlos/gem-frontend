@@ -34,10 +34,15 @@ var GemListComponent = (function () {
         this.getGems();
     };
     GemListComponent.prototype.view = function (gem_id) {
-        this.router.navigate(["/gem", gem_id]);
+        this.router.navigate(["/gems", gem_id]);
     };
     GemListComponent.prototype.newGem = function () {
         this.router.navigate(["/gem"]);
+    };
+    GemListComponent.prototype.delete = function (gem) {
+        var _this = this;
+        this.gemService.delete(gem).subscribe(function (res) { alert(res.status); }, function (error) { _this.error = error; alert("Error: " + error); });
+        this.getGems();
     };
     GemListComponent = __decorate([
         core_1.Component({

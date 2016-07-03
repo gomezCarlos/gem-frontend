@@ -9,19 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var HomeComponent = (function () {
-    function HomeComponent() {
+var gem_1 = require('./gem');
+var GemFormComponent = (function () {
+    function GemFormComponent() {
+        this.model = new gem_1.Gem();
     }
-    HomeComponent = __decorate([
+    GemFormComponent.prototype.onsubmit = function () {
+    };
+    GemFormComponent = __decorate([
         core_1.Component({
-            selector: "home",
-            templateUrl: "app/home.component.html",
-            directives: [],
-            providers: []
+            selector: 'gem-form',
+            templateUrl: "app/gems/gem-form.component.html"
         }), 
         __metadata('design:paramtypes', [])
-    ], HomeComponent);
-    return HomeComponent;
+    ], GemFormComponent);
+    return GemFormComponent;
 }());
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.GemFormComponent = GemFormComponent;
+//# sourceMappingURL=gem-form.component.js.map

@@ -5,9 +5,9 @@ var gem_list_component_1 = require('./gems/gem-list.component');
 var gem_detail_component_1 = require('./gems/gem-detail.component');
 var access_component_1 = require('./login/access.component');
 exports.routes = [
-    { path: 'home', component: home_component_1.HomeComponent },
+    { path: '', component: home_component_1.HomeComponent },
     { path: 'gems', component: gem_list_component_1.GemListComponent },
-    { path: 'gem/:id', component: gem_detail_component_1.GemDetailComponent },
+    { path: 'gems/:id', component: gem_detail_component_1.GemDetailComponent },
     { path: 'gem', component: gem_detail_component_1.GemDetailComponent },
     { path: 'login', component: access_component_1.LoginComponent }
 ];

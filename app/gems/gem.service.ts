@@ -16,13 +16,21 @@ export class GemService {
 
 	private getData(r: Response) { let body = r.json(); return body._embedded.gems; }
 
-	private getSingleData(r: Response) { let body = r.json(); return body; }
+	private getSingleData(r: Response) { let body = r.json();
+		let gem = new Gem()
+		gem.name = body.name;
+		gem.gemId = body.gemId;
+		gem.description = body.description; 
+	//	return gem;
+		return body; 
+	}
 
 	private getError(error: any) { return Observable.throw(error); }
 
 	private getOptions(){
 		let headers = new Headers({
-			'Content-Type':'application/json'
+			'Content-Type':'application/json',
+			'Access-Control-Allow-Origin': '*'
 		})
 		let options = new RequestOptions({headers: headers})
 		return options;
@@ -37,7 +45,7 @@ export class GemService {
 
 	getById(id : number): Observable<Gem>{
 		return this.http.get(this.urlBackend+"/"+id)
-		.map(this.getData)
+		.map(this.getSingleData)
 		.catch(this.getError);
 	}
 
@@ -45,5 +53,29 @@ export class GemService {
 		return this.http.get(url)
 		.map(this.getSingleData)
 		.catch(this.getError);
+	}
+
+	save(gem : Gem): Observable<Gem>{
+		let headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    	let requestOptions = new RequestOptions({ headers: headers });
+		let url ='';
+		
+		if(gem.gemId!=null){
+			url = this.urlBackend+"/"+gem.gemId;
+					return this.http.put(url,JSON.stringify(gem),requestOptions)
+					.map(this.getSingleData)
+					.catch(this.getError)
+		}
+		else{
+			url = this.urlBackend;
+					return this.http.post(url,JSON.stringify(gem),requestOptions)
+					.map(this.getSingleData)
+					.catch(this.getError)
+		}
+
+	}
+
+	delete(gem : Gem): Observable<Response>{
+		return this.http.delete(this.urlBackend+"/"+gem.gemId,this.getOptions).map(this.getSingleData).catch(this.getError);
 	}
 }

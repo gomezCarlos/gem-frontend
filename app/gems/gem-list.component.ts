@@ -45,10 +45,17 @@ export class GemListComponent implements OnInit {
 	}
 
 	view(gem_id: number){
-		this.router.navigate(["/gem",gem_id]);
+		this.router.navigate(["/gems",gem_id]);
 	}
 
 	newGem(){
 		this.router.navigate(["/gem"]);
+	}
+	delete(gem: Gem){
+		this.gemService.delete(gem).subscribe(
+			res =>{alert(res.status)},
+			error => { this.error = error; alert("Error: "+error)}
+			);
+		this.getGems();
 	}
 }

@@ -7,9 +7,9 @@ import { LoginComponent } from './login/access.component';
 
 export const routes: RouterConfig = [
 	
-	{ path: 'home',component: HomeComponent },
+	{ path: '',component: HomeComponent },
 	{ path: 'gems', component: GemListComponent },
-	{ path: 'gem/:id', component: GemDetailComponent },
+	{ path: 'gems/:id', component: GemDetailComponent },
 	{ path: 'gem', component: GemDetailComponent },
 	{ path: 'login', component: LoginComponent }
 

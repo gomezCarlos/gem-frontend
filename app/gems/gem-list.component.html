@@ -21,7 +21,10 @@
   		<span class="mdl-list__item-text-body">{{gem.description}}</span>
   	</span>
   	<span mdl-list__item-secondary-content>
-  		<button class="mdl-list__item-secondary-action" (click)="view(gem.ids)"><i class="material-icons">edit</i></button>
+  		<button class="mdl-list__item-secondary-action" (click)="view(gem.gemId)"><i class="material-icons">edit</i></button>
+      <button class="mdl-list__item-secondary-action" (click)="delete(gem)">
+        <i class="material-icons">delete</i>
+      </button>
   	</span>
   </li>
 </ul>
