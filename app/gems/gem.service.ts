@@ -17,11 +17,7 @@ export class GemService {
 	private getData(r: Response) { let body = r.json(); return body._embedded.gems; }
 
 	private getSingleData(r: Response) { let body = r.json();
-		let gem = new Gem()
-		gem.name = body.name;
-		gem.gemId = body.gemId;
-		gem.description = body.description; 
-	//	return gem;
+	
 		return body; 
 	}
 
@@ -37,7 +33,9 @@ export class GemService {
 	}
 
 	getGems(): Observable<Gem[]>{
-		return this.http.get(this.urlBackend)
+		let headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+    	let requestOptions = new RequestOptions({ headers: headers });
+		return this.http.get(this.urlBackend,requestOptions)
 			.map(this.getData)
 			.catch(this.getError)
 			;

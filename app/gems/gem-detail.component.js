@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var gem_1 = require('./gem');
 var gem_service_1 = require('./gem.service');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 var gem_form_component_1 = require('./gem-form.component');
 var GemDetailComponent = (function () {
     function GemDetailComponent(gemService, router, route) {
@@ -49,7 +50,7 @@ var GemDetailComponent = (function () {
             selector: "gem-detail",
             templateUrl: "app/gems/gem-detail.component.html",
             directives: [gem_form_component_1.GemFormComponent],
-            providers: [gem_service_1.GemService]
+            providers: [gem_service_1.GemService, http_1.HTTP_PROVIDERS]
         }), 
         __metadata('design:paramtypes', [gem_service_1.GemService, router_1.Router, router_1.ActivatedRoute])
     ], GemDetailComponent);

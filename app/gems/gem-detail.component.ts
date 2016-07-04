@@ -2,13 +2,14 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Gem } from './gem';
 import { GemService } from './gem.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HTTP_PROVIDERS } from '@angular/http';
 import { GemFormComponent } from './gem-form.component';
 
 @Component({
 	selector: "gem-detail",
 	templateUrl: "app/gems/gem-detail.component.html",
 	directives: [GemFormComponent],
-	providers: [GemService]
+	providers: [GemService,HTTP_PROVIDERS]
 })
 export class GemDetailComponent implements OnInit, OnDestroy {
 
@@ -35,7 +36,6 @@ export class GemDetailComponent implements OnInit, OnDestroy {
       }
     }
     )
-
   }
 
   ngOnDestroy(){
