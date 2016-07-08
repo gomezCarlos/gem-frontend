@@ -14,9 +14,9 @@ export class User {
 @Injectable()
 export class AuthenticationService {
 
-private loginUrl : string = "http:/127.0.0.3:7890/login";
+private loginUrl : string = "http://127.0.0.3:7890/login";
 
-private logoutUrl : string = "http:/127.0.0.3:7890/logout";
+private logoutUrl : string = "http://127.0.0.3:7890/logout";
 
 private csrfToken : string;
 

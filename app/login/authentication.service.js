@@ -28,8 +28,8 @@ var AuthenticationService = (function () {
     function AuthenticationService(http, _router) {
         this.http = http;
         this._router = _router;
-        this.loginUrl = "http:/127.0.0.3:7890/login";
-        this.logoutUrl = "http:/127.0.0.3:7890/logout";
+        this.loginUrl = "http://127.0.0.3:7890/login";
+        this.logoutUrl = "http://127.0.0.3:7890/logout";
     }
     AuthenticationService.prototype.login = function (user, done) {
         var _this = this;
