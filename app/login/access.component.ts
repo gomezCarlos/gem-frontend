@@ -17,12 +17,16 @@ export class LoginComponent {
         private router : Router) {}
  
     login() {
-        if(!this._service.login(this.user)){
+        if(!this._service.login(this.user, this.saludar)){
             this.errorMsg = 'Fallo en la autenticación';
             alert(this.errorMsg);
         }
         else
         
         this.router.navigate(['gems']);
+    }
+
+    saludar(){
+        alert("holaaaaaaa");
     }
 }
