@@ -36,6 +36,7 @@ var AuthenticationService = (function () {
         var postData = "username=" + user.username + "&password=" + user.password;
         this.headers = new http_1.Headers();
         this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        this.headers.append('Access-Control-Allow-Origin', '*');
         this.getCsrfToken().subscribe(function (res) { return _this.csrfToken = res.headers.get('X-CSRF-TOKEN'); });
         this.headers.append('X-CSRF-TOKEN', this.csrfToken);
         this.http.post(this.loginUrl, postData, {

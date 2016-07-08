@@ -30,6 +30,7 @@ private headers: Headers;
 
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        this.headers.append('Access-Control-Allow-Origin', '*');
 
         this.getCsrfToken().subscribe(
           res => this.csrfToken = res.headers.get('X-CSRF-TOKEN'));
