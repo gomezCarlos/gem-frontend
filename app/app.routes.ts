@@ -13,7 +13,7 @@ export const routes: RouterConfig = [
 	{ path: 'gems', component: GemListComponent },
 	{ path: 'gems/:id', component: GemDetailComponent },
 	{ path: 'gem', component: GemDetailComponent },
-	{ path: 'documentStates', component: DocumentStateComponent }
+	{ path: 'documentStates', component: DocumentStateComponent },
 	{ path: 'login', component: LoginComponent }
 
 ];
