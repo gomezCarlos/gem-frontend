@@ -23,6 +23,7 @@ var GemService = (function () {
         var body = r.json();
         return body;
     };
+    GemService.prototype.getResponse = function (r) { var body = r; return body; };
     GemService.prototype.getError = function (error) { return Observable_1.Observable.throw(error); };
     GemService.prototype.getOptions = function () {
         var headers = new http_1.Headers({
@@ -67,7 +68,7 @@ var GemService = (function () {
         }
     };
     GemService.prototype.delete = function (gem) {
-        return this.http.delete(this.urlBackend + "/" + gem.gemId, this.getOptions).map(this.getSingleData).catch(this.getError);
+        return this.http.delete(this.urlBackend + "/" + gem.gemId, this.getOptions).map(this.getResponse).catch(this.getError);
     };
     GemService = __decorate([
         core_1.Injectable(), 

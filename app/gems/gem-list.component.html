@@ -5,13 +5,18 @@
   <div class="mdl-card__supporting-text">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Mauris sagittis pellentesque lacus eleifend lacinia...
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="newGem()" layout="row" layout-align="end center" >
+  <i class="material-icons pull-right">add</i>
+</button>
   </div>
 </div>
 
 
 <div mdl *ngIf="!gems" class="mdl-spinner mdl-js-spinner is-active"></div>
 
+<div id='notifications'>
 
+</div>
 
 <ul class="mdl-list" *ngIf="gems">
   <li class="mdl-list__item mdl-list__item--three-line"  *ngFor="let gem of gems">
@@ -21,6 +26,7 @@
   		<span class="mdl-list__item-text-body">{{gem.description}}</span>
   	</span>
   	<span mdl-list__item-secondary-content>
+      <button class="mdl-list__item-secondary-action" (click)="view(gem.gemId)"><i class="material-icons">visibility</i></button>
   		<button class="mdl-list__item-secondary-action" (click)="view(gem.gemId)"><i class="material-icons">edit</i></button>
       <button class="mdl-list__item-secondary-action" (click)="delete(gem)">
         <i class="material-icons">delete</i>
@@ -28,6 +34,3 @@
   	</span>
   </li>
 </ul>
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="newGem()" layout="row" layout-align="end center" >
-  <i class="material-icons pull-right">add</i>
-</button>

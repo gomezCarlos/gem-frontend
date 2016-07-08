@@ -14,6 +14,8 @@ import { MdlComponent } from '../mdl.component';
 
 export class GemListComponent implements OnInit {
 
+	notification : any;
+
 	gems: Gem[];
 	gem: Gem;
 	error: any;
@@ -53,9 +55,9 @@ export class GemListComponent implements OnInit {
 	}
 	delete(gem: Gem){
 		this.gemService.delete(gem).subscribe(
-			res =>{alert(res.status)},
+			res =>{alert(res.status); this.notification=true;  this.getGems();},
 			error => { this.error = error; alert("Error: "+error)}
 			);
-		this.getGems();
+		
 	}
 }

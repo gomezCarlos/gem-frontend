@@ -41,8 +41,7 @@ var GemListComponent = (function () {
     };
     GemListComponent.prototype.delete = function (gem) {
         var _this = this;
-        this.gemService.delete(gem).subscribe(function (res) { alert(res.status); }, function (error) { _this.error = error; alert("Error: " + error); });
-        this.getGems();
+        this.gemService.delete(gem).subscribe(function (res) { alert(res.status); _this.notification = true; _this.getGems(); }, function (error) { _this.error = error; alert("Error: " + error); });
     };
     GemListComponent = __decorate([
         core_1.Component({

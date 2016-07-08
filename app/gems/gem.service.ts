@@ -20,6 +20,7 @@ export class GemService {
 	
 		return body; 
 	}
+	private getResponse(r: Response) { let body = r; return body;}
 
 	private getError(error: any) { return Observable.throw(error); }
 
@@ -74,6 +75,6 @@ export class GemService {
 	}
 
 	delete(gem : Gem): Observable<Response>{
-		return this.http.delete(this.urlBackend+"/"+gem.gemId,this.getOptions).map(this.getSingleData).catch(this.getError);
+		return this.http.delete(this.urlBackend+"/"+gem.gemId,this.getOptions).map(this.getResponse).catch(this.getError);
 	}
 }
