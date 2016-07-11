@@ -26,19 +26,21 @@ private headers: Headers;
     }
 
     login(user: User, done: Function) {
-        var postData = "username=" + user.username + "&password=" + user.password;
+        //var postData = "username=" + user.username + "&password=" + user.password;
+        var postData = "username=" + "mpaez" + "&password=" + "4581591";
 
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        this.headers.append('Access-Control-Allow-Origin', '*');
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded'});
+        let requestOptions = new RequestOptions({ headers: headers });
 
-        this.getCsrfToken().subscribe(
-          res => this.csrfToken = res.headers.get('X-CSRF-TOKEN'));
-        this.headers.append('X-CSRF-TOKEN', this.csrfToken);
+        //this.headers = new Headers();
+        //this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //this.headers.append('Access-Control-Allow-Origin', '*');
 
-        this.http.post(this.loginUrl, postData, {
-                headers: this.headers
-            })
+        //this.getCsrfToken().subscribe(
+        //  res => this.csrfToken = res.headers.get('X-CSRF-TOKEN'));
+        //this.headers.append('X-CSRF-TOKEN', this.csrfToken);
+
+        this.http.post(this.loginUrl, postData, requestOptions)
             .map((res:any) => res.json())
             .subscribe(
                 res => alert(res.status),

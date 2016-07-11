@@ -1,0 +1,36 @@
+<div class="mdl-card mdl-shadow--2dp" style="width: 100%;">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Usuarios</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris sagittis pellentesque lacus eleifend lacinia...
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="newAccount()" layout="row" layout-align="end center" >
+  <i class="material-icons pull-right">add</i>
+</button>
+  </div>
+</div>
+
+
+<div mdl *ngIf="!accounts" class="mdl-spinner mdl-js-spinner is-active"></div>
+
+<div id='notifications'>
+
+</div>
+
+<ul class="mdl-list" *ngIf="accounts">
+  <li class="mdl-list__item mdl-list__item--three-line"  *ngFor="let account of accounts">
+  	<span class="mdl-list__item-primary-content">
+  		<i class="material-icons mdl-list__item-avatar">star</i>
+  		<span>{{account.username}}</span>
+  		<span class="mdl-list__item-text-body">{{account.authorities}}</span>
+  	</span>
+  	<span mdl-list__item-secondary-content>
+      <button class="mdl-list__item-secondary-action" (click)="view(account.ids)"><i class="material-icons">visibility</i></button>
+  		<button class="mdl-list__item-secondary-action" (click)="view(account.ids)"><i class="material-icons">edit</i></button>
+      <button class="mdl-list__item-secondary-action" (click)="delete(account)">
+        <i class="material-icons">delete</i>
+      </button>
+  	</span>
+  </li>
+</ul>
