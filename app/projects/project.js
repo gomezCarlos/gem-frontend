@@ -1,7 +1,6 @@
 "use strict";
 var Project = (function () {
     function Project() {
-        // code...
     }
     return Project;
 }());

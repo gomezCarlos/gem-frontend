@@ -1,0 +1,36 @@
+<div class="mdl-card mdl-shadow--2dp" style="width: 100%;">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Proyectos</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris sagittis pellentesque lacus eleifend lacinia...
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="newProject()" layout="row" layout-align="end center" >
+  <i class="material-icons pull-right">add</i>
+</button>
+  </div>
+</div>
+
+
+<div mdl *ngIf="!projects" class="mdl-spinner mdl-js-spinner is-active"></div>
+
+<div id='notifications'>
+
+</div>
+
+<ul class="mdl-list" *ngIf="projects">
+  <li class="mdl-list__item mdl-list__item--three-line"  *ngFor="let project of projects">
+  	<span class="mdl-list__item-primary-content">
+  		<i class="material-icons mdl-list__item-avatar">star</i>
+  		<span>{{project.name}}</span>
+  		<span class="mdl-list__item-text-body">{{project.description}}</span>
+  	</span>
+  	<span mdl-list__item-secondary-content>
+      <button class="mdl-list__item-secondary-action" (click)="view(project.ids)"><i class="material-icons">visibility</i></button>
+  		<button class="mdl-list__item-secondary-action" (click)="view(project.ids)"><i class="material-icons">edit</i></button>
+      <button class="mdl-list__item-secondary-action" (click)="delete(project)">
+        <i class="material-icons">delete</i>
+      </button>
+  	</span>
+  </li>
+</ul>

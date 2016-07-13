@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+<div class="mdl-card mdl-shadow--2dp" style="width: 90%;">
+  <div class="mdl-card__title" *ngIf="project">
+    <h2 class="mdl-card__title-text">Proyecto {{project.name}}</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Mauris sagittis pellentesque lacus eleifend lacinia...
+    <div class="container"  *ngIf="project">
+    <form>
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control " required [(ngModel)]="project.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          Nombre es requerido
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Descripcion</label>
+        <input type="text" class="form-control" [(ngModel)]="project.description" name="description" #description="ngModel">
+        <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+          Descripcion es requerida
+        </div>
+      </div>
+    </form>
+	</div>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="save()" >
+      save
+    </button>
+    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="list()" >
+      list
+    </button>
+  </div>
+</div>
