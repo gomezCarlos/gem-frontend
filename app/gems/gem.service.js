@@ -13,12 +13,18 @@ var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/observable/throw');
 require('rxjs/add/operator/catch');
+require('rxjs/add/observable/of');
+require('rxjs/add/operator/do');
 var GemService = (function () {
     function GemService(http) {
         this.http = http;
         this.urlBackend = "http://127.0.0.3:7890/api/v1/gems";
     }
     GemService.prototype.getData = function (r) { var body = r.json(); return body._embedded.gems; };
+    GemService.prototype.getPaginatedData = function (r) {
+        var body = r.json();
+        return Observable_1.Observable.of({ items: body._embedded.gems, total: body.page.totalElements });
+    };
     GemService.prototype.getSingleData = function (r) {
         var body = r.json();
         return body;
@@ -69,6 +75,17 @@ var GemService = (function () {
     };
     GemService.prototype.delete = function (gem) {
         return this.http.delete(this.urlBackend + "/" + gem.gemId, this.getOptions).map(this.getResponse).catch(this.getError);
+    };
+    GemService.prototype.getPage = function (page) {
+        var perPage = 10;
+        var params = new http_1.URLSearchParams();
+        params.set("size", perPage.toString());
+        params.set("page", page.toString());
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        var requestOptions = new http_1.RequestOptions({ headers: headers, search: params });
+        return this.http.get(this.urlBackend, requestOptions)
+            .map(this.getPaginatedData)
+            .catch(this.getError);
     };
     GemService = __decorate([
         core_1.Injectable(), 

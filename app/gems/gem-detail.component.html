@@ -8,6 +8,11 @@
     Mauris sagittis pellentesque lacus eleifend lacinia...
     <div class="container"  *ngIf="gem">
     <form>
+
+      
+  <input type="checkbox" id="switch1" class="">
+
+
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" required [(ngModel)]="gem.name" name="name" #name="ngModel">
@@ -22,6 +27,18 @@
           Description is required
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="isActive">Description</label>
+        <input type="checkbox" class="form-control" [(ngModel)]="gem.isActive" name="isActive" #isActive="ngModel">
+        <div [hidden]="isActive.valid || isActive.pristine" class="alert alert-danger">
+
+          Description is required
+        </div>
+      </div>
+
+
+
     </form>
 	</div>
   </div>

@@ -8,6 +8,9 @@ import { AccountDetailComponent } from './accounts/account-detail.component';
 import { AccountListComponent } from './accounts/account-list.component';
 import { ProjectDetailComponent } from './projects/project-detail.component';
 import { ProjectListComponent } from './projects/project-list.component';
+import { TaskDetailComponent } from './tasks/task-detail.component';
+import { TaskListComponent } from './tasks/task-list.component';
+
 
 import { LoginComponent } from './login/access.component';
 
@@ -24,7 +27,9 @@ export const routes: RouterConfig = [
 	{ path: 'account', component : AccountDetailComponent},
 	{ path: 'projects', component : ProjectListComponent},
 	{ path: 'projects/:id', component : ProjectDetailComponent},
-	{ path: 'project', component : ProjectDetailComponent}	
+	{ path: 'project', component : ProjectDetailComponent},
+	{ path: 'tasks', component : TaskListComponent},
+	{ path: 'task', component : TaskDetailComponent}	
 
 ];
 

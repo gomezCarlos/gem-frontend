@@ -15,7 +15,7 @@
 <div mdl *ngIf="!gems" class="mdl-spinner mdl-js-spinner is-active"></div>
 
 <div id='notifications'>
-
+<div *ngIf="notification"><i class="material-icons">done</i></div>
 </div>
 
 <ul class="mdl-list" *ngIf="gems">
@@ -26,11 +26,12 @@
   		<span class="mdl-list__item-text-body">{{gem.description}}</span>
   	</span>
   	<span mdl-list__item-secondary-content>
-      <button class="mdl-list__item-secondary-action" (click)="view(gem.gemId)"><i class="material-icons">visibility</i></button>
-  		<button class="mdl-list__item-secondary-action" (click)="view(gem.gemId)"><i class="material-icons">edit</i></button>
-      <button class="mdl-list__item-secondary-action" (click)="delete(gem)">
+      <button class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="view(gem.gemId)"><i class="material-icons">visibility</i></button>
+  		<button class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="view(gem.gemId)"><i class="material-icons">edit</i></button>
+      <button class="mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" (click)="delete(gem)">
         <i class="material-icons">delete</i>
       </button>
   	</span>
   </li>
 </ul>
+

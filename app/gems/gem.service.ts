@@ -1,9 +1,16 @@
 import { Injectable} from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Http, Response, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do';
 import { Gem } from './gem';
+
+interface IServerResponse {
+    items: Gem[];
+    total: number;
+}
 
 @Injectable()
 export class GemService {
@@ -15,6 +22,12 @@ export class GemService {
 	}
 
 	private getData(r: Response) { let body = r.json(); return body._embedded.gems; }
+
+	private getPaginatedData(r: Response){
+		let body = r.json();
+		
+		return Observable.of({items: body._embedded.gems,total: body.page.totalElements});
+	}
 
 	private getSingleData(r: Response) { let body = r.json();
 	
@@ -76,5 +89,20 @@ export class GemService {
 
 	delete(gem : Gem): Observable<Response>{
 		return this.http.delete(this.urlBackend+"/"+gem.gemId,this.getOptions).map(this.getResponse).catch(this.getError);
+	}
+
+	getPage(page: number): Observable<IServerResponse>{
+		const perPage = 10;
+		let params = new URLSearchParams();
+		params.set("size",perPage.toString());
+		params.set("page",page.toString());
+		let headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+
+    	let requestOptions = new RequestOptions({ headers: headers, search: params });
+		
+		return this.http.get(this.urlBackend,requestOptions)
+			.map(this.getPaginatedData)
+			.catch(this.getError)
+			;
 	}
 }

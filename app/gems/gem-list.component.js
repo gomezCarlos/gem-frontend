@@ -13,10 +13,12 @@ var gem_service_1 = require('./gem.service');
 var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
 var mdl_component_1 = require('../mdl.component');
+var ng2_pagination_1 = require('ng2-pagination');
 var GemListComponent = (function () {
     function GemListComponent(gemService, router) {
         this.gemService = gemService;
         this.router = router;
+        this.p = 0;
     }
     GemListComponent.prototype.getGems = function () {
         var _this = this;
@@ -24,6 +26,30 @@ var GemListComponent = (function () {
             .getGems()
             .subscribe(function (gems) { _this.gems = gems; }, function (error) { _this.error = error; });
     };
+    GemListComponent.prototype.getPage = function (page) {
+        var _this = this;
+        this.loading = true;
+        this.gemsAsync =
+            this.gemService
+                .getPage(page)
+                .do(function (res) {
+                _this.total = res.total;
+                _this.p = page;
+                _this.loading = false;
+                alert(res.items);
+                alert(res.total);
+            }).map(function (res) {
+                return res.items;
+            });
+    };
+    /*
+    getPage(page: number){
+        this.total = 22;
+        this.p = 0;
+        this.loading=false;
+        return this.getGems();
+    }
+    */
     GemListComponent.prototype.getGem = function (id) {
         var _this = this;
         this.gemService
@@ -32,6 +58,7 @@ var GemListComponent = (function () {
     };
     GemListComponent.prototype.ngOnInit = function () {
         this.getGems();
+        this.getPage(0);
     };
     GemListComponent.prototype.view = function (gem_id) {
         this.router.navigate(["/gems", gem_id]);
@@ -47,8 +74,9 @@ var GemListComponent = (function () {
         core_1.Component({
             selector: "gem-list",
             templateUrl: "app/gems/gem-list.component.html",
-            directives: [mdl_component_1.MdlComponent],
-            providers: [gem_service_1.GemService, http_1.HTTP_PROVIDERS]
+            directives: [mdl_component_1.MdlComponent, ng2_pagination_1.PaginationControlsCmp],
+            pipes: [ng2_pagination_1.PaginatePipe],
+            providers: [gem_service_1.GemService, http_1.HTTP_PROVIDERS, ng2_pagination_1.PaginationService],
         }), 
         __metadata('design:paramtypes', [gem_service_1.GemService, router_1.Router])
     ], GemListComponent);
