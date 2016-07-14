@@ -94,12 +94,11 @@ getPage(page: number){
 	newGem(){
 		this.router.navigate(["/gem"]);
 	}
-	
+
 	delete(gem: Gem){
 		this.gemService.delete(gem).subscribe(
 			res =>{alert(res.status); this.notification=true;  this.getGems();},
 			error => { this.error = error; alert("Error: "+error)}
 			);
-		
 	}
 }
