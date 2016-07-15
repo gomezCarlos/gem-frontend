@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var task_1 = require('./task');
 var task_service_1 = require('./task.service');
+var project_service_1 = require('../projects/project.service');
 var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
 var TaskDetailComponent = (function () {
@@ -36,12 +37,20 @@ var TaskDetailComponent = (function () {
     TaskDetailComponent.prototype.ngOnDestroy = function () {
         this.param.unsubscribe();
     };
+    TaskDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.service.save(this.task)
+            .subscribe(function (response) { _this.task = response; _this.router.navigate(["/gems"]); }, function (error) { return _this.error = error; });
+    };
+    TaskDetailComponent.prototype.list = function () {
+        this.router.navigate(["/tasks"]);
+    };
     TaskDetailComponent = __decorate([
         core_1.Component({
-            selector: "gem-detail",
-            templateUrl: "app/gems/gem-detail.component.html",
+            selector: "task-detail",
+            templateUrl: "app/tasks/task-detail.component.html",
             directives: [],
-            providers: [task_service_1.TaskService, http_1.HTTP_PROVIDERS]
+            providers: [task_service_1.TaskService, project_service_1.ProjectService, http_1.HTTP_PROVIDERS]
         }), 
         __metadata('design:paramtypes', [task_service_1.TaskService, router_1.Router, router_1.ActivatedRoute])
     ], TaskDetailComponent);

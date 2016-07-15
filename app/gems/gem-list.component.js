@@ -24,7 +24,11 @@ var GemListComponent = (function () {
         var _this = this;
         this.gemService
             .getGems()
-            .subscribe(function (gems) { _this.gems = gems; }, function (error) { _this.error = error; });
+            .subscribe(function (gems) { _this.gems = gems; }, function (error) {
+            _this.error = error;
+            if (error.status == 401)
+                alert("Inicie sesión primero.");
+        });
     };
     GemListComponent.prototype.getPage = function (page) {
         var _this = this;

@@ -34,7 +34,9 @@ var TaskService = (function () {
     };
     TaskService.prototype.getTasks = function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-        var requestOptions = new http_1.RequestOptions({ headers: headers });
+        var params = new http_1.URLSearchParams();
+        params.set("sort", "name");
+        var requestOptions = new http_1.RequestOptions({ headers: headers, search: params });
         return this.http.get(this.urlBackend, requestOptions)
             .map(this.getData)
             .catch(this.getError);

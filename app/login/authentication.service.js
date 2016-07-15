@@ -34,8 +34,9 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.login = function (user, done) {
         var _this = this;
         //var postData = "username=" + user.username + "&password=" + user.password;
-        var postData = "username=" + "mpaez" + "&password=" + "4581591";
-        var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var postData = "username=" + "user" + "&password=" + "123";
+        var valid;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*' });
         var requestOptions = new http_1.RequestOptions({ headers: headers });
         //this.headers = new Headers();
         //this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -43,9 +44,14 @@ var AuthenticationService = (function () {
         //this.getCsrfToken().subscribe(
         //  res => this.csrfToken = res.headers.get('X-CSRF-TOKEN'));
         //this.headers.append('X-CSRF-TOKEN', this.csrfToken);
+        valid = false;
         this.http.post(this.loginUrl, postData, requestOptions)
             .map(function (res) { return res.json(); })
-            .subscribe(function (res) { return alert(res.status); }, function (err) { return _this.logError(err); }, function () { return done(); });
+            .subscribe(function (res) {
+            if (res.validation)
+                valid = true;
+        }, function (err) { return _this.logError(err); }, function () { return done(); });
+        return valid;
     };
     AuthenticationService.prototype.logout = function () {
         this.http.post(this.logoutUrl, {});

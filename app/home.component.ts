@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
 @Component({
 	selector: "home",
 	templateUrl: "app/home.component.html",
-	directives: [],
+	directives: [ROUTER_DIRECTIVES],
 	providers: []
 })
 export class HomeComponent  {

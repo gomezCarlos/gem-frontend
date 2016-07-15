@@ -25,15 +25,12 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.login = function () {
         if (!this._service.login(this.user, this.saludar)) {
-            this.errorMsg = 'Fallo en la autenticación';
-            //alert(this.getCookie("gem_id"));
-            alert(this.errorMsg);
+            console.log(this._cookieService.getAll());
         }
         else
             this.router.navigate(['gems']);
     };
     LoginComponent.prototype.saludar = function () {
-        alert("holaaaaaaa");
     };
     LoginComponent = __decorate([
         core_1.Component({

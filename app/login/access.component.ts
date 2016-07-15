@@ -25,10 +25,8 @@ export class LoginComponent {
 
     login() {
         if(!this._service.login(this.user, this.saludar)){
-            this.errorMsg = 'Fallo en la autenticación';
-
-            //alert(this.getCookie("gem_id"));
-            alert(this.errorMsg);
+            
+            console.log(this._cookieService.getAll());
         }
         else
         
@@ -36,6 +34,6 @@ export class LoginComponent {
     }
 
     saludar(){
-        alert("holaaaaaaa");
+        
     }
 }

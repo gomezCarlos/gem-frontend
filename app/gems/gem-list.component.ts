@@ -44,7 +44,10 @@ export class GemListComponent implements OnInit {
 		.getGems()
 		.subscribe(
 			gems => {this.gems = gems;},
-			error => {this.error = error;}
+			error => {this.error = error;
+				if(error.status == 401)
+					alert("Inicie sesión primero.");
+			}
 			);
 	}
 

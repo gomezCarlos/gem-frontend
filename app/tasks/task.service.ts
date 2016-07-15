@@ -40,7 +40,10 @@ export class TaskService {
 
 	getTasks(): Observable<Task[]>{
 		let headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-    	let requestOptions = new RequestOptions({ headers: headers });
+		let params = new URLSearchParams();
+		params.set("sort","name");
+    	let requestOptions = new RequestOptions({ headers: headers, search: params });
+
 		return this.http.get(this.urlBackend,requestOptions)
 			.map(this.getData)
 			.catch(this.getError)

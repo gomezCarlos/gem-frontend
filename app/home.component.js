@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var HomeComponent = (function () {
     function HomeComponent() {
     }
@@ -16,7 +17,7 @@ var HomeComponent = (function () {
         core_1.Component({
             selector: "home",
             templateUrl: "app/home.component.html",
-            directives: [],
+            directives: [router_1.ROUTER_DIRECTIVES],
             providers: []
         }), 
         __metadata('design:paramtypes', [])
